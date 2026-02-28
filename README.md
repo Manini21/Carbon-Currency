@@ -1,4 +1,4 @@
-# Carbon · Currency
+#🌍 Carbon Pricing Dashboard
 
 > *"Someone turned the planet's breath into currency."*
 
@@ -6,50 +6,183 @@ A scroll-driven, data-first investigation into the global carbon credit market �
 
 ---
 
-## What it is
+📌 Overview
 
-Not a dashboard. Not a report.
+Carbon pricing mechanisms such as Carbon Taxes and Emissions Trading Systems (ETS) are essential tools in addressing climate change. However, the raw datasets provided publicly contain:
 
-A cinematic deep-dive that walks through what a carbon credit actually is, who profits, what the data shows across 30 years and 6 countries — and what it can't tell us.
+Metadata rows
 
----
+Unstructured text
 
-## What's inside
+Missing values
 
-- **Scale of 1 ton** — a visual sense of what CO₂ actually means before any numbers
-- **Market anatomy** — who makes money, and how verified those claims are
-- **Personal footprint calculator** — lifestyle inputs, real-time CO₂ estimate
-- **Reality check** — claimed forest absorption vs. actual global emissions
-- **Longitudinal data (1995–2024)** — 6 countries, real dataset, no extrapolation
-- **Analytical perspective** — correlation vs. causation, honestly
+Empty columns
 
----
+Non-standardized headers
 
-## Data
+This project focuses on building a complete data pipeline to clean, transform, and structure the dataset before using it for visualization.
 
-All emissions data from [Our World in Data](https://ourworldindata.org/co2-and-greenhouse-gas-emissions) / Global Carbon Project.  
-Policy references: EU ETS · World Bank Carbon Pricing Dashboard · IPCC AR6.
 
-No numbers were invented. No trends were extended.
+🔄 Data Pipeline
+1️⃣ Data Collection
 
----
+Raw dataset downloaded in CSV format.
 
-## Stack
+Dataset contained metadata, descriptive rows, and inconsistent formatting.
 
-Vanilla HTML · CSS · JavaScript  
-[Chart.js](https://www.chartjs.org/) for data visualisation  
-No frameworks. No build step. Open `index.html`.
+2️⃣ Data Cleaning (Python + Pandas)
 
----
+The raw CSV file had:
 
-## Files
+Informational rows before actual headers
 
-```
-index.html   — structure
-style.css    — design system, animations
-script.js    — data, charts, interactions
-```
+Empty columns
 
----
+Missing values
+
+Mixed formatting
+
+Cleaning Steps Performed:
+
+✔ Loaded CSV without default header
+✔ Identified correct header row
+✔ Removed metadata rows
+✔ Dropped completely empty rows
+✔ Dropped completely empty columns
+✔ Standardized column names (lowercase, underscores)
+✔ Replaced NaN values with None
+✔ Exported structured JSON
+
+3️⃣ Data Transformation
+
+The cleaned dataset is exported in:
+
+carbon_pricing_cleaned.json
+
+Using:
+
+df.to_json("carbon_pricing_cleaned.json", orient="records", indent=4)
+Why JSON?
+
+Easier frontend integration
+
+Lightweight
+
+Structured key-value format
+
+Compatible with JavaScript fetch API
+
+4️⃣ Data Visualization
+
+The frontend consumes the cleaned JSON file and displays:
+
+Carbon pricing instruments
+
+Jurisdiction-level information
+
+Policy coverage data
+
+Structured tabular or graphical insights
+
+🛠 Tech Stack
+🔹 Data Processing
+
+Python 3.11
+
+Pandas
+
+🔹 Frontend
+
+HTML5
+
+CSS3
+
+JavaScript
+
+⚙️ How to Run This Project
+1️⃣ Clone the Repository
+git clone <your-repo-link>
+cd carbon-pricing-dashboard
+2️⃣ Install Dependencies
+pip install pandas
+3️⃣ Run Data Cleaning Script
+
+Navigate to:
+
+cd data-processing
+python clean_carbon_pricing.py
+
+This generates:
+
+carbon_pricing_cleaned.json
+4️⃣ Launch Frontend
+
+Open:
+
+frontend/index.html
+
+in your browser.
+
+📊 Key Features
+
+✅ Real-world dataset processing
+
+✅ End-to-end data pipeline
+
+✅ Structured JSON transformation
+
+✅ Clean project architecture
+
+✅ Frontend data integration
+
+✅ Reproducible workflow
+
+🎯 What Makes This Project Strong
+
+This is not just a visualization project.
+
+It includes:
+
+Data engineering
+
+Data cleaning
+
+Structured transformation
+
+Format conversion
+
+Pipeline reproducibility
+
+Frontend integration
+
+It demonstrates practical skills in:
+
+Data preprocessing
+
+File handling
+
+ETL workflow
+
+Web-based visualization
+
+🏆 CodeDex Monthly Challenge
+
+This project was created as a submission for the CodeDex Monthly Challenge, showcasing practical data processing and structured frontend integration.
+
+📚 Learning Outcomes
+
+Through this project:
+
+Understood how messy real-world datasets can be
+
+Built a reproducible data pipeline
+
+Converted unstructured CSV into structured JSON
+
+Integrated processed data into frontend UI
+
+📜 License
+
+This project is for educational and analytical purposes.
 
 *Built to inform. Not to persuade.*

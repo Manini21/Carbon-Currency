@@ -121,8 +121,18 @@
   <div class="section-eyebrow reveal">Market Anatomy</div>
   <h2 class="section-title reveal">Who actually<br>makes money here?</h2>
 
-  <!-- Status legend -->
-  <div class="status-legend reveal">
+  <div class="tabs-row reveal">
+    <button class="tab-btn active" data-tab="renewable">Renewable</button>
+    <button class="tab-btn" data-tab="forest">Forest Offsets</button>
+    <button class="tab-btn" data-tab="corporate">Corporations</button>
+    <button class="tab-btn" data-tab="traders">Traders</button>
+  </div>
+
+  <div class="money-grid reveal" id="money-grid"></div>
+  <div class="tooltip-note reveal" id="tooltip-note"></div>
+
+  <!-- Status legend — sits below the tooltip note with a small gap -->
+  <div class="status-legend reveal" style="margin-top:20px;">
     <div class="status-legend-item">
       <span class="status-badge verified">Verified</span>
       <span class="status-legend-desc">Methodology and additionality broadly accepted by independent reviewers. Credits likely represent real reductions.</span>
@@ -136,16 +146,6 @@
       <span class="status-legend-desc">Peer-reviewed research found significant over-crediting. Credits issued likely exceeded actual emissions reductions.</span>
     </div>
   </div>
-
-  <div class="tabs-row reveal">
-    <button class="tab-btn active" data-tab="renewable">Renewable</button>
-    <button class="tab-btn" data-tab="forest">Forest Offsets</button>
-    <button class="tab-btn" data-tab="corporate">Corporations</button>
-    <button class="tab-btn" data-tab="traders">Traders</button>
-  </div>
-
-  <div class="money-grid reveal" id="money-grid"></div>
-  <div class="tooltip-note reveal" id="tooltip-note"></div>
 
 </section>
 
@@ -251,8 +251,12 @@
   <div class="section-eyebrow reveal">The Reality Check</div>
   <h2 class="section-title reveal">Credits issued.<br>But did emissions fall?</h2>
   <p style="color:var(--text-dim);max-width:560px;line-height:1.7;margin-bottom:48px;" class="reveal">
-    Independent research found that up to <strong style="color:var(--red)">80% of forest offset credits</strong> 
-    reviewed in 2024 had no real climate benefit. Meanwhile global emissions hit a new record. The numbers don't add up.
+    Research by <strong style="color:var(--text)">academics and journalists with no financial stake in the projects they audited</strong> — 
+    as distinct from the verification bodies paid by those same projects — found that up to <strong style="color:var(--red)">80% of forest offset credits</strong> 
+    reviewed in 2024 had no real climate benefit. Key sources: the <strong style="color:var(--text)">Berkeley Carbon Trading Project</strong> (UC Berkeley, 2024), 
+    which found average over-crediting of 6.5× across REDD+ forest projects, and a joint 
+    <strong style="color:var(--text)">Guardian / Corporate Accountability investigation</strong> (2023), which found 90%+ of Verra-certified 
+    rainforest credits were "phantom credits." Meanwhile global emissions hit a new record. The numbers don't add up.
   </p>
 
   <div class="split-screen reveal">

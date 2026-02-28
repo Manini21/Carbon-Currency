@@ -1,4 +1,4 @@
-#🌍 Carbon Pricing Dashboard
+# 🌍 Carbon Pricing Dashboard
 
 > *"Someone turned the planet's breath into currency."*
 
@@ -6,7 +6,7 @@ A scroll-driven, data-first investigation into the global carbon credit market �
 
 ---
 
-📌 Overview
+# 📌 Overview
 
 Carbon pricing mechanisms such as Carbon Taxes and Emissions Trading Systems (ETS) are essential tools in addressing climate change. However, the raw datasets provided publicly contain:
 
@@ -23,7 +23,7 @@ Non-standardized headers
 This project focuses on building a complete data pipeline to clean, transform, and structure the dataset before using it for visualization.
 
 
-🔄 Data Pipeline
+# 🔄 Data Pipeline
 1️⃣ Data Collection
 
 Raw dataset downloaded in CSV format.
@@ -84,7 +84,7 @@ Policy coverage data
 
 Structured tabular or graphical insights
 
-🛠 Tech Stack
+# 🛠 Tech Stack
 🔹 Data Processing
 
 Python 3.11
@@ -123,7 +123,7 @@ frontend/index.html
 
 in your browser.
 
-📊 Key Features
+# 📊 Key Features
 
 ✅ Real-world dataset processing
 
@@ -137,7 +137,7 @@ in your browser.
 
 ✅ Reproducible workflow
 
-🎯 What Makes This Project Strong
+# 🎯 What Makes This Project Strong
 
 This is not just a visualization project.
 
@@ -165,11 +165,11 @@ ETL workflow
 
 Web-based visualization
 
-🏆 CodeDex Monthly Challenge
+# 🏆 CodeDex Monthly Challenge
 
 This project was created as a submission for the CodeDex Monthly Challenge, showcasing practical data processing and structured frontend integration.
 
-📚 Learning Outcomes
+# 📚 Learning Outcomes
 
 Through this project:
 
@@ -181,8 +181,6 @@ Converted unstructured CSV into structured JSON
 
 Integrated processed data into frontend UI
 
-📜 License
+# 📜 License
 
 This project is for educational and analytical purposes.
-
-*Built to inform. Not to persuade.*

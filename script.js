@@ -1,4 +1,4 @@
-// ==================== CURSOR ====================
+// CURSOR
 const cursor = document.getElementById('cursor');
 const cursorRing = document.getElementById('cursor-ring');
 let mx = 0, my = 0, rx = 0, ry = 0;
@@ -39,7 +39,7 @@ document.querySelectorAll('a,button,input,[data-group],.tab-btn,.poll-btn').forE
   });
 });
 
-// ==================== PARTICLES ====================
+// PARTICLES
 const canvas = document.getElementById('particle-canvas');
 const ctx = canvas.getContext('2d');
 let particles = [];
@@ -101,13 +101,13 @@ function animateParticles() {
 }
 animateParticles();
 
-// ==================== PROGRESS BAR ====================
+// PROGRESS BAR 
 window.addEventListener('scroll', () => {
   const progress = window.scrollY / (document.body.scrollHeight - window.innerHeight);
   document.getElementById('progress-bar').style.width = (progress * 100) + '%';
 });
 
-// ==================== SCROLL REVEAL ====================
+// SCROLL REVEAL
 const revealEls = document.querySelectorAll('.reveal');
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(e => {
@@ -116,7 +116,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 revealEls.forEach(el => revealObserver.observe(el));
 
-// ==================== CARBON 101 ANIMATIONS ====================
+//  CARBON 101 ANIMATIONS 
 (function initCarbon101() {
   const c101Observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
@@ -159,7 +159,7 @@ revealEls.forEach(el => revealObserver.observe(el));
   ).forEach(el => c101Observer.observe(el));
 })();
 
-// ==================== MONEY TABS ====================
+// MONEY TABS
 const moneyData = {
   renewable: {
     cards: [
@@ -233,7 +233,7 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 });
 renderMoneyTab('renewable');
 
-// ==================== INDIVIDUAL MODE ====================
+// INDIVIDUAL MODE
 const selections = { car: 2.4, energy: 2.1, flights: 0, diet: 2.0 };
 const labels = { car: 'Petrol', energy: 'Coal Grid', flights: 'None', diet: 'Omnivore' };
 
@@ -282,7 +282,7 @@ function buyOffset() {
 }
 updateEmissions();
 
-// ==================== REALITY TOGGLE ====================
+// REALITY TOGGLE
 function toggleOffsets(el) {
   const reveal = document.getElementById('true-emission-reveal');
   if (el.checked) {
@@ -296,7 +296,7 @@ function toggleOffsets(el) {
   }
 }
 
-// ==================== POLL — SARCASTIC RESPONSES ====================
+// POLL
 const pollResponses = {
   yes: [
     {
@@ -437,7 +437,7 @@ document.addEventListener('click', function (e) {
   }
 });
 
-// ==================== STAR BACKGROUND ====================
+// STAR BACKGROUND 
 (function createStars() {
   const canvas2 = document.createElement('canvas');
   canvas2.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;';
@@ -453,7 +453,7 @@ document.addEventListener('click', function (e) {
   }
 })();
 
-// ==================== EARTH GLOW BACKDROP ====================
+//  EARTH GLOW BACKDROP
 (function drawEarthGlow() {
   const canvas3 = document.createElement('canvas');
   canvas3.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:0;pointer-events:none;opacity:0.15;';
@@ -489,9 +489,9 @@ document.addEventListener('click', function (e) {
 console.log('%cCarbon\u00b7Currency \u2014 made with purpose.', 'font-family:monospace;color:#00ff9d;font-size:14px;');
 
 
-// =============================================================================
+// =============
 // DATA MODULE
-// =============================================================================
+// =============
 // All chart data is loaded via fetch() from two JSON files:
 //
 //   cleaned_co2.json              — OWID / Global Carbon Project
@@ -506,8 +506,6 @@ console.log('%cCarbon\u00b7Currency \u2014 made with purpose.', 'font-family:mon
 //
 // Charts render only after both fetches resolve.
 // =============================================================================
-
-// COUNTRY_META is static — colours and canvas IDs do not come from JSON
 const COUNTRY_META = {
   'China':          { color: '#ef4444', flag: 'CN', canvasId: 'ctr-china',   badgeId: 'badge-china'   },
   'India':          { color: '#f59e0b', flag: 'IN', canvasId: 'ctr-india',   badgeId: 'badge-india'   },
@@ -517,10 +515,9 @@ const COUNTRY_META = {
   'United Kingdom': { color: '#34d399', flag: 'GB', canvasId: 'ctr-uk',      badgeId: 'badge-uk'      }
 };
 
-// Preferred display order for the Since-2005 cards
 const CARD_ORDER = ['Germany', 'France', 'United Kingdom', 'United States', 'China', 'India'];
 
-// ─── Fetch both JSON files in parallel ───────────────────────────────────────
+// ─── Fetch both JSON files in parallel ───
 Promise.all([
   fetch('../data/cleaned_co2.json').then(res => {
     if (!res.ok) throw new Error(`cleaned_co2.json: HTTP ${res.status}`);
@@ -538,14 +535,12 @@ Promise.all([
     initApp(DATA, pricingStats);
   })
   .catch(err => {
-    // Fetch will fail when opening index.html directly as a local file (file://).
-    // Deploy to Vercel or run `npx serve .` locally.
     console.error('[Carbon\u00b7Currency] Data load failed:', err.message);
     console.warn('Tip: fetch() requires an HTTP server. Run `npx serve .` or deploy to Vercel.');
   });
 
 
-// ─── CO2 data module — built from cleaned_co2.json ────────────────────────────
+// CO2 data module — built from cleaned_co2.json
 function buildCO2Module(raw) {
 
   const countries = Object.keys(COUNTRY_META);
@@ -557,12 +552,11 @@ function buildCO2Module(raw) {
     if (byCountry[d.country]) byCountry[d.country][d.year] = d;
   });
 
-  // Sorted unique year list derived from the data — no hardcoding
+  // Sorted unique year list derived from the data
   const allYears   = [...new Set(raw.map(d => d.year))].sort((a, b) => a - b);
   const latestYear = Math.max(...allYears);
   const idx2005    = allYears.indexOf(2005);
 
-  // ── PCT_SINCE_2005 computed from data, not hardcoded ─────────────────────
   // Each country: % change from its 2005 value to the latest year in the dataset.
   const PCT_SINCE_2005 = {};
   countries.forEach(c => {
@@ -573,7 +567,6 @@ function buildCO2Module(raw) {
       : 0;
   });
 
-  // ── Series helper ─────────────────────────────────────────────────────────
   // Returns an array aligned to allYears; null where a country has no data
   function series(country) {
     return allYears.map(y =>
@@ -621,7 +614,6 @@ function buildCO2Module(raw) {
     };
   }
 
-  // ── Country mini-chart ────────────────────────────────────────────────────
   function buildCountryChart(country, dimPre) {
     const meta   = COUNTRY_META[country];
     const cvs    = document.getElementById(meta.canvasId);
@@ -679,7 +671,6 @@ function buildCO2Module(raw) {
     });
   }
 
-  // ── Main trajectories chart ───────────────────────────────────────────────
   function buildTrajectoriesChart(dimPre) {
     const cvs = document.getElementById('chart-trajectories-main');
     if (!cvs) return;
@@ -739,7 +730,7 @@ function buildCO2Module(raw) {
     countries.forEach(c => buildCountryChart(c, dimPre));
   }
 
-  // ── Since-2005 cards — all values computed from JSON data ─────────────────
+  // ── Since-2005 cards — computed from JSON data 
   function buildSinceCards() {
     const grid = document.getElementById('since-cards-grid');
     if (!grid || grid.dataset.built) return;
@@ -777,7 +768,7 @@ function buildCO2Module(raw) {
     });
   }
 
-  // ── Animate counters once cards are in view ───────────────────────────────
+  // ── Animate counters once cards are in view ──
   function animateSinceCards() {
     document.querySelectorAll('.since-pct[data-target]').forEach(el => {
       if (el.dataset.animated) return;
@@ -864,7 +855,7 @@ function buildPricingStats(raw) {
 }
 
 
-// ─── App init — runs after both fetches resolve ───────────────────────────────
+// App init — runs after both fetches resolve 
 function initApp(DATA, pricingStats) {
 
   // Update all "latest year" text placeholders
@@ -876,7 +867,7 @@ function initApp(DATA, pricingStats) {
   // Populate Section 06 pricing stat rows from carbon_pricing_cleaned.json
   populatePricingStats(pricingStats);
 
-  // ── IntersectionObserver: Sections 05 + 06 ──────────────────────────────
+  // ── IntersectionObserver: Sections 05 + 06 ─────
   const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
@@ -897,7 +888,7 @@ function initApp(DATA, pricingStats) {
     if (el) sectionObserver.observe(el);
   });
 
-  // ── Expose toggles globally so inline onclick= attributes work ────────────
+  // ── Expose toggles globally so inline onclick= attributes work ──────
 
   // Compare mode: dims pre-2005 on all country mini-charts
   window.toggleCompareMode = function (on) {
@@ -913,8 +904,6 @@ function initApp(DATA, pricingStats) {
 
 
 // ─── Populate Section 06 stat rows from carbon pricing data ──────────────────
-// Finds the four stat rows inside .signal-conclusion by their label text and
-// updates only the right-hand value span. Layout and styling are untouched.
 function populatePricingStats(stats) {
 
   // Pre-compute display strings
@@ -930,10 +919,8 @@ function populatePricingStats(stats) {
     { match: 'EU CARBON PRICE',          value: euPrice     },
     { match: 'GLOBAL EMISSIONS COVERED', value: globalCov   },
     { match: 'SHARE OF JURISDICTIONS',   value: ipccDisplay }
-    // 'PRICE NEEDED' row is intentionally left as-is (IPCC projection, not in dataset)
   ];
 
-  // Target the stat rows — they are flex rows with justify-content:space-between
   const rows = document.querySelectorAll('.signal-conclusion [style*="justify-content:space-between"]');
   rows.forEach(row => {
     const labelEl = row.querySelector('span:first-child');
@@ -948,14 +935,12 @@ function populatePricingStats(stats) {
 }
 
 
-// ==================== COMPARE MODE TOGGLE ====================
-// Stub — overwritten by initApp() after data loads.
-// Prevents "not defined" errors if the toggle is clicked before fetch completes.
+// COMPARE MODE TOGGLE
 if (typeof window.toggleCompareMode === 'undefined') {
   window.toggleCompareMode = function () {};
 }
 
-// ==================== SECTION IMPACT TOGGLE ====================
+// SECTION IMPACT TOGGLE
 if (typeof window.toggleSectionImpact === 'undefined') {
   window.toggleSectionImpact = function () {};
 }
